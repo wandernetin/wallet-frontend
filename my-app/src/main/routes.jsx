@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom'
 
-import CategoryList from '../category/categoryList';
+import Category from '../category/category';
 
 export default function Routes() {
     return (
         <BrowserRouter>
-            <Route path="/category" component={CategoryList} />
+            <Route path="/category" component={Category} />
         </BrowserRouter>
     )
 }
