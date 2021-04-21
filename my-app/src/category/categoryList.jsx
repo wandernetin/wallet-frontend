@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Table, Row, Container } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
+import { FiDelete } from 'react-icons/fi';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../category/categoryList.css'
-
-
 
 class CategoryList extends Component {
     constructor(props) {
@@ -45,7 +44,7 @@ class CategoryList extends Component {
                                         <tr id={category._id}>
                                             <td>{category.description}</td>
                                             <td>{category.type}</td>
-                                            <td>Remove</td>
+                                            <td>{<FiDelete />}</td>
                                         </tr>
                                     ))
                                 }
