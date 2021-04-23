@@ -15,6 +15,7 @@ class CategoryList extends Component {
             description: '',
             type: ''
         };
+        this.deleteCategory = this.deleteCategory.bind(this);
     }
 
     componentWillMount() {
@@ -24,7 +25,20 @@ class CategoryList extends Component {
     handleSubmit(event) {
         axios.post('http://localhost:3333/category', {
             description: this.state.description,
-            type: this.state.type
+            type: (this.state.type ? this.state.type : 'EXPENSE')
+        });
+
+        this.getCategories();
+    }
+
+    async deleteCategory(id, e) {
+        console.log(id);
+        await axios.delete('http://localhost:3333/category', {
+            data: {
+                "category": {
+                    "_id": id
+                }
+            }
         });
 
         this.getCategories();
@@ -58,8 +72,8 @@ class CategoryList extends Component {
                                 <Form.Group controlId="categoryForm.type">
                                     <Form.Label>Type</Form.Label>
                                     <Form.Control as="select" name="type" onChange={this.onChange} value={this.state.type === null ? '' : this.state.type} >
-                                        <option>INCOME</option>
                                         <option>EXPENSE</option>
+                                        <option>INCOME</option>
                                     </Form.Control>
                                 </Form.Group>
                                 <Button variant="primary" type="submit">
@@ -82,7 +96,7 @@ class CategoryList extends Component {
                                             <tr key={category._id}>
                                                 <td>{category.description}</td>
                                                 <td>{category.type}</td>
-                                                <td>{<FiDelete />}</td>
+                                                <td><button onClick={(e) => this.deleteCategory(category._id, e)}>{<FiDelete />}</button></td>
                                             </tr>
                                         ))
                                     }
