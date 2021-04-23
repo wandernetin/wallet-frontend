@@ -4,8 +4,10 @@ import Routes from './main/routes';
 
 function App() {
   return (
-    <div className="App">
-        <Routes/>
+    <div className="d-flex flex-column min-vh-100">
+      <div className="container flex-fill'">
+        <Routes />
+      </div>
     </div>
   );
 }
