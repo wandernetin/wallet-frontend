@@ -1,15 +1,22 @@
-import './App.css';
+import React from 'react';
+import { BrowserRouter, Route } from "react-router-dom";
 
-import Routes from './main/routes';
+import "bootstrap/dist/css/bootstrap.min.css";
 
-function App() {
-  return (
-    <div className="d-flex flex-column min-vh-100">
-      <div className="container flex-fill'">
-        <Routes />
+import Layout from './main/layout';
+
+import './assets/css/main.css';
+
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <BrowserRouter>
+          <Route path="/" component={Layout} />
+        </BrowserRouter>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default App;
