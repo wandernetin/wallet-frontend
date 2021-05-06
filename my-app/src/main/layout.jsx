@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 
 import Category from '../category/category';
 import Income from '../income/income';
+import Expense from '../expense/expense';
 
 import Header from './header';
 import Footer from './footer';
@@ -16,6 +17,7 @@ export default class Layout extends Component {
                     <Switch>
                         <Route path="/category" component={Category} />
                         <Route path="/income" component={Income} />
+                        <Route path="/expense" component={Expense} />
                     </Switch>
                 </main>
                 <Footer />
