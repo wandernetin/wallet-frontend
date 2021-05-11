@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Table, Form, Button } from 'react-bootstrap';
+import { Table, Form, Button, Alert } from 'react-bootstrap';
 import { FiDelete } from 'react-icons/fi';
 import DatePicker from "react-datepicker";
+
+import { formatDate } from '../utils/dateUtils';
+import { formatNumberIntoCurrency } from '../utils/currencyUtils';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "react-datepicker/dist/react-datepicker.css";
@@ -17,7 +20,8 @@ class Expense extends Component {
             description: '',
             value: '',
             date: '',
-            category: ''
+            category: '',
+            msg: false
         };
         this.deleteExpense = this.deleteExpense.bind(this);
     }
@@ -41,6 +45,10 @@ class Expense extends Component {
         });
 
         this.getCurrentMonthExpenses();
+        this.setState({ msg: true },
+            () => {
+                window.setTimeout(() => { this.setState({ msg: false }) }, 40000)
+            });
     }
 
     async deleteExpense(id, e) {
@@ -75,6 +83,12 @@ class Expense extends Component {
         const expenses = this.state.expenses;
         return (
             <div className="expenseTable">
+                <Alert show={this.state.msg} variant="success">
+                    <Alert.Heading>Done</Alert.Heading>
+                    <p>
+                        Expense was saved.
+                    </p>
+                </Alert>
                 <h1>
                     Expense
                     </h1>
@@ -123,9 +137,9 @@ class Expense extends Component {
                                     expenses.map(expense => (
                                         <tr key={expense._id}>
                                             <td>{expense.description}</td>
-                                            <td>{expense.value}</td>
+                                            <td>{formatNumberIntoCurrency(expense.value)}</td>
                                             <td>{expense.category.description}</td>
-                                            <td>{expense.date}</td>
+                                            <td>{formatDate(expense.date)}</td>
                                             <td><button onClick={(e) => this.deleteExpense(expense._id, e)}>{<FiDelete />}</button></td>
                                         </tr>
                                     ))
