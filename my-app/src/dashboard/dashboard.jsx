@@ -23,9 +23,7 @@ class Dashboard extends Component {
             expenses: [],
             incomes: [],
             expenseSummary: 0,
-            incomeSummary: 0,
-            categoriesSummary: null
-        }
+            incomeSummary: 0        }
     };
 
     componentWillMount() {
@@ -85,21 +83,21 @@ class Dashboard extends Component {
                 <Content>
                     <Row>
                         <div className="card" styles="width: 18rem;">
-                        <img className="card-img-top" src={credit}/>
+                            <img className="card-img-top" src={credit} />
                             <div className="card-body">
                                 <h5 className="card-title">Credit</h5>
                                 <p className="card-text">{formatNumberIntoCurrency(this.state.incomeSummary)}</p>
                             </div>
                         </div>
                         <div className="card" styles="width: 18rem;">
-                            <img className="card-img-top" src={debit}/>
+                            <img className="card-img-top" src={debit} />
                             <div className="card-body">
                                 <h5 className="card-title">Debit</h5>
                                 <p className="card-text">{formatNumberIntoCurrency(this.state.expenseSummary)}</p>
                             </div>
                         </div>
                         <div className="card" styles="width: 18rem;">
-                            <img className="card-img-top" src={balance}/>
+                            <img className="card-img-top" src={balance} />
                             <div className="card-body">
                                 <h5 className="card-title">Balance</h5>
                                 <p className="card-text">{formatNumberIntoCurrency(this.state.incomeSummary - this.state.expenseSummary)}</p>
