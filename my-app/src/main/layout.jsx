@@ -4,6 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import Category from '../category/category';
 import Income from '../income/income';
 import Expense from '../expense/expense';
+import Dashboard from '../dashboard/dashboard';
 
 import Header from './header';
 import Footer from './footer';
@@ -18,6 +19,7 @@ export default class Layout extends Component {
                         <Route path="/category" component={Category} />
                         <Route path="/income" component={Income} />
                         <Route path="/expense" component={Expense} />
+                        <Route path="/" component={Dashboard} />
                     </Switch>
                 </main>
                 <Footer />

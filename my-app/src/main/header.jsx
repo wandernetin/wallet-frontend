@@ -15,6 +15,21 @@ export default class Header extends Component {
                                 <BiHome className="nav-icon" size={20} />
                             </Link>
                         </li>
+                        <li className="nav-item">
+                            <Link to={"/expense"} className="nav-link">
+                                Expense
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link to={"/income"} className="nav-link">
+                                Income
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link to={"/category"} className="nav-link">
+                                Category
+                            </Link>
+                        </li>
                     </div>
                 </nav>
             </div>

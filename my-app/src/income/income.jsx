@@ -4,6 +4,9 @@ import { Table, Form, Button } from 'react-bootstrap';
 import { FiDelete } from 'react-icons/fi';
 import DatePicker from "react-datepicker";
 
+import { formatDate } from '../utils/dateUtils';
+import { formatNumberIntoCurrency } from '../utils/currencyUtils';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "react-datepicker/dist/react-datepicker.css";
 import '../App.css';
@@ -123,9 +126,9 @@ class Income extends Component {
                                     incomes.map(income => (
                                         <tr key={income._id}>
                                             <td>{income.description}</td>
-                                            <td>{income.value}</td>
+                                            <td>{formatNumberIntoCurrency(income.value)}</td>
                                             <td>{income.category.description}</td>
-                                            <td>{income.date}</td>
+                                            <td>{formatDate(income.date)}</td>
                                             <td><button onClick={(e) => this.deleteIncome(income._id, e)}>{<FiDelete />}</button></td>
                                         </tr>
                                     ))
