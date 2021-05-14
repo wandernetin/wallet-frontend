@@ -7,6 +7,8 @@ import DatePicker from "react-datepicker";
 import { formatDate } from '../utils/dateUtils';
 import { formatNumberIntoCurrency } from '../utils/currencyUtils';
 
+import AuthService from '../services/auth.service';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "react-datepicker/dist/react-datepicker.css";
 import '../App.css';
@@ -32,7 +34,9 @@ class Expense extends Component {
     }
 
     async getExpenseCategories() {
-        const res = await axios.get("http://localhost:3333/category/expense");
+        const res = await axios.get("http://localhost:3333/category/expense", {
+            headers: AuthService.getAuthHeader()
+        });
         this.setState({ expenseCategories: res.data });
     }
 
@@ -42,6 +46,8 @@ class Expense extends Component {
             value: this.state.value,
             category: JSON.parse(this.state.category),
             date: this.state.date
+        }, {
+            headers: AuthService.getAuthHeader()
         });
 
         this.getCurrentMonthExpenses();
@@ -58,6 +64,8 @@ class Expense extends Component {
                     "_id": id
                 }
             }
+        }, {
+            headers: AuthService.getAuthHeader()
         });
 
         this.getCurrentMonthExpenses();
@@ -75,7 +83,9 @@ class Expense extends Component {
 
 
     async getCurrentMonthExpenses() {
-        const res = await axios.get('http://localhost:3333/expense/current');
+        const res = await axios.get('http://localhost:3333/expense/current', {
+            headers: AuthService.getAuthHeader()
+        });
         this.setState({ expenses: res.data });
     }
 

@@ -3,6 +3,8 @@ import axios from 'axios';
 import { Table, Form, Button } from 'react-bootstrap';
 import { FiDelete } from 'react-icons/fi';
 
+import AuthService from '../services/auth.service';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../category/category.css';
 import '../App.css';
@@ -26,6 +28,8 @@ class CategoryList extends Component {
         axios.post('http://localhost:3333/category', {
             description: this.state.description,
             type: (this.state.type ? this.state.type : 'EXPENSE')
+        }, {
+            headers: AuthService.getAuthHeader()
         });
 
         this.getCategories();
@@ -39,6 +43,8 @@ class CategoryList extends Component {
                     "_id": id
                 }
             }
+        }, {
+            headers: AuthService.getAuthHeader()
         });
 
         this.getCategories();
@@ -50,7 +56,9 @@ class CategoryList extends Component {
 
 
     async getCategories() {
-        const res = await axios.get('http://localhost:3333/category');
+        const res = await axios.get('http://localhost:3333/category', {
+            headers: AuthService.getAuthHeader()
+        });
         this.setState({ categories: res.data });
     }
 
